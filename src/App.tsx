@@ -1,22 +1,22 @@
-"use client"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import { AuthProvider } from "../src/contexts/AuthContext"
-import Navbar from "../src/components/Navbar"
-import HomePage from "../src/pages/HomePage"
-import PropertiesPage from "../src/pages/PropertiesPage"
-import WalletPage from "../src/pages/WalletPage"
-import PortfolioPage from "../src/pages/PortfolioPage"
-import CheckoutPage from "../src/pages/CheckoutPage"
-import ProfilePage from "../src/pages/ProfilePage"
-import SellPage from "../src/pages/SellPage"
-import TopBanner from "../src/components/TopBanner"
-import ProtectedRoute from "../src/components/ProtectedRoute"
+import { AuthProvider } from "./contexts/AuthContext"
+import Navbar from "./components/Navbar"
+import HomePage from "./pages/HomePage"
+import PropertiesPage from "./pages/PropertiesPage"
+import WalletPage from "./pages/WalletPage"
+import PortfolioPage from "./pages/PortfolioPage"
+import CheckoutPage from "./pages/CheckoutPage"
+import ProfilePage from "./pages/ProfilePage"
+import SellPage from "./pages/SellPage"
+import TopBanner from "./components/TopBanner"
+import ProtectedRoute from "./components/ProtectedRoute"
 
 function App() {
   return (
     <AuthProvider>
       <Router>
         <div className="min-h-screen bg-white">
+          <TopBanner />
           <Navbar />
           <Routes>
             <Route path="/" element={<HomePage />} />
