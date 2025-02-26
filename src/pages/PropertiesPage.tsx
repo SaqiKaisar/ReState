@@ -4,127 +4,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import PropertyCard from "../components/PropertyCard";
 import { cn } from "../../lib/utils";
-
-interface Property {
-  id: string;
-  title: string;
-  location: string;
-  price: number;
-  returns: number;
-  image: string;
-  status: "Available" | "Funded" | "Exited";
-}
-
-const mockProperties: Property[] = [
-  {
-    id: "1",
-    title: "Boulevard Point",
-    location: "Downtown Dubai",
-    price: 1305990,
-    returns: 10.4,
-    image: "/placeholder.svg?height=200&width=300",
-    status: "Available",
-  },
-  {
-    id: "2",
-    title: "Marina Tower",
-    location: "Dubai Marina",
-    price: 2000000,
-    returns: 8.5,
-    image: "/placeholder.svg?height=200&width=300",
-    status: "Available",
-  },
-  {
-    id: "3",
-    title: "Palm Jumeirah Villa",
-    location: "Palm Jumeirah",
-    price: 7500000,
-    returns: 7.2,
-    image: "/placeholder.svg?height=200&width=300",
-    status: "Available",
-  },
-  {
-    id: "4",
-    title: "Burj Vista",
-    location: "Downtown Dubai",
-    price: 3200000,
-    returns: 9.1,
-    image: "/placeholder.svg?height=200&width=300",
-    status: "Available",
-  },
-  {
-    id: "5",
-    title: "Jumeirah Beach Residence",
-    location: "JBR",
-    price: 2800000,
-    returns: 8.8,
-    image: "/placeholder.svg?height=200&width=300",
-    status: "Funded",
-  },
-  {
-    id: "6",
-    title: "Dubai Hills Estate",
-    location: "Dubai Hills",
-    price: 5400000,
-    returns: 7.5,
-    image: "/placeholder.svg?height=200&width=300",
-    status: "Available",
-  },
-  {
-    id: "7",
-    title: "The Address Sky View",
-    location: "Downtown Dubai",
-    price: 4800000,
-    returns: 9.0,
-    image: "/placeholder.svg?height=200&width=300",
-    status: "Available",
-  },
-  {
-    id: "8",
-    title: "Bluewaters Residences",
-    location: "Bluewaters Island",
-    price: 6500000,
-    returns: 8.2,
-    image: "/placeholder.svg?height=200&width=300",
-    status: "Available",
-  },
-  {
-    id: "9",
-    title: "Arabian Ranches Villa",
-    location: "Arabian Ranches",
-    price: 4300000,
-    returns: 7.9,
-    image: "/placeholder.svg?height=200&width=300",
-    status: "Available",
-  },
-  {
-    id: "10",
-    title: "Meydan One Tower",
-    location: "Meydan",
-    price: 3500000,
-    returns: 8.7,
-    image: "/placeholder.svg?height=200&width=300",
-    status: "Funded",
-  },
-  {
-    id: "11",
-    title: "Emaar Beachfront",
-    location: "Emaar Beachfront",
-    price: 5900000,
-    returns: 7.6,
-    image: "/placeholder.svg?height=200&width=300",
-    status: "Available",
-  },
-  {
-    id: "12",
-    title: "Al Habtoor City Apartment",
-    location: "Business Bay",
-    price: 3100000,
-    returns: 8.3,
-    image: "/placeholder.svg?height=200&width=300",
-    status: "Available",
-  },
-];
+import { Link } from "react-router-dom";
+import { mockProperties } from "./mockData";
 
 const PropertiesPage = () => {
   const [selectedStatus, setSelectedStatus] = useState<
@@ -134,6 +15,11 @@ const PropertiesPage = () => {
   const filteredProperties = mockProperties.filter(
     (property) => property.status === selectedStatus
   );
+
+  // Function to handle card click and redirect to details page
+  // const handleCardClick = (id: string) => {
+  //   router.push(`/properties/${id}`); // Navigate to the details page
+  // };
 
   return (
     <div className="flex min-h-screen bg-gray-50">
@@ -167,15 +53,18 @@ const PropertiesPage = () => {
             transition={{ duration: 0.3 }}
           >
             {filteredProperties.map((property) => (
-              <PropertyCard
-                key={property.id}
-                title={property.title}
-                location={property.location}
-                price={property.price}
-                returns={property.returns}
-                image={property.image}
-                status={property.status}
-              />
+              <Link to={`/properties/${property.id}`} key={property.id}>
+                <div className="cursor-pointer">
+                  <PropertyCard
+                    title={property.title}
+                    location={property.location}
+                    price={property.price}
+                    returns={property.returns}
+                    image={property.image}
+                    status={property.status}
+                  />
+                </div>
+              </Link>
             ))}
           </motion.div>
         </div>

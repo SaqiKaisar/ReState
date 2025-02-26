@@ -1,15 +1,16 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import { AuthProvider } from "./contexts/AuthContext"
-import Navbar from "./components/Navbar"
-import HomePage from "./pages/HomePage"
-import PropertiesPage from "./pages/PropertiesPage"
-import WalletPage from "./pages/WalletPage"
-import PortfolioPage from "./pages/PortfolioPage"
-import CheckoutPage from "./pages/CheckoutPage"
-import ProfilePage from "./pages/ProfilePage"
-import SellPage from "./pages/SellPage"
-import TopBanner from "./components/TopBanner"
-import ProtectedRoute from "./components/ProtectedRoute"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
+import Navbar from "./components/Navbar";
+import HomePage from "./pages/HomePage";
+import PropertiesPage from "./pages/PropertiesPage";
+import WalletPage from "./pages/WalletPage";
+import PortfolioPage from "./pages/PortfolioPage";
+import CheckoutPage from "./pages/CheckoutPage";
+import ProfilePage from "./pages/ProfilePage";
+import SellPage from "./pages/SellPage";
+import TopBanner from "./components/TopBanner";
+import ProtectedRoute from "./components/ProtectedRoute";
+import PropertyDetailsPage from "./pages/PropertyDetailsPage";
 
 function App() {
   return (
@@ -54,12 +55,12 @@ function App() {
               }
             />
             <Route path="/sell" element={<SellPage />} />
+            <Route path="/properties/:id" element={<PropertyDetailsPage />} />
           </Routes>
         </div>
       </Router>
     </AuthProvider>
-  )
+  );
 }
 
-export default App
-
+export default App;
